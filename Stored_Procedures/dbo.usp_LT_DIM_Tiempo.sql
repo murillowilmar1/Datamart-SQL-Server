@@ -1,55 +1,5 @@
 CREATE PROCEDURE dbo.usp_LT_DIM_Tiempo
-------------------------------------------------------------------------
--- Procedimiento para generar una dimensión de tiempo localizada
--- Se basa en una tabla de tiempo con las siguientes características:
 
-/*
-CREATE TABLE [dbo].[Dim_Tiempo](
-	[IdTiempo] [int]  NOT NULL,
-	[Fecha] [datetime] NOT NULL,
-	[NumeroDiaSemana] [tinyint] NOT NULL,
-	[DiaSemanaIngles] [nvarchar](10) NULL,
-	[DiaSemana] [nvarchar](10) NOT NULL,
-	[NumeroDiaMes] [tinyint] NULL,
-	[NumeroDiaAño] [smallint] NULL,
-	[NumeroSemanaAño] [tinyint] NOT NULL,
-	[MesIngles] [nvarchar](20) NULL,
-	[Mes] [nvarchar](20) NOT NULL,
-	[NumeroMesAño] [nvarchar](20) NOT NULL,
-	[TrimestreCalendario] [nvarchar](20) NOT NULL,
-	[AñoCalendario] [char](4) NOT NULL,
-	[SemestreCalendario] [nvarchar](20) NOT NULL,
-	[TrimestreFiscal] [tinyint] NULL,
-	[AñoFiscal] [char](4) NULL,
-	[SemestreFiscal] [tinyint] NULL,
-	[MesDelAño] [nvarchar](20) NOT NULL,
-	[Diahabil] [nvarchar](20) NOT NULL,
- CONSTRAINT [PK_Tiempo] PRIMARY KEY CLUSTERED 
-(
-	[IdTiempo] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
- CONSTRAINT [AK_Tiempo_Fecha] UNIQUE NONCLUSTERED 
-(
-	[Fecha] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-*/
--- No es necesario que la tabla tenga todos los campos. Sin embargo el
--- procedimiento toma llena los campos con valores para todas las fechas
--- especificadas en el rango dado por los dos parámetros.
--- Si el procedimiento se ejecuta varias veces, por cada nueva ejecución
--- se actualizan los registros de manera que cualquier modificación
--- previa que hubiera podido hacerse sobre los datos se perderá
---
--- Tiene en cuenta únicamente algunos campos en inglés
-------------------------------------------------------------------------
--- Desarrollado por: Mauricio Cotes
-------------------------------------------------------------------------
--- Modificaciones:
--- Afortunadamente Ninguna :D
-------------------------------------------------------------------------
 @pFechaInicial datetime,-- = '01/01/2010', 
 @pFechaFinal datetime-- = '01/31/2020'
 AS
